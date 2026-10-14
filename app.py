@@ -176,12 +176,16 @@ def threshold_alerts(snapshot: dict[str, Any]) -> list[dict[str, str]]:
 def render_header(snapshot: dict[str, Any]) -> None:
     left, right = st.columns([4, 1])
     with left:
-        computer_name = get_system_info()["computer_name"]
-        st.title(f"{get_time_greeting()} {computer_name}")
-        st.write("Your system performance at a glance.")
+        system_info = get_system_info()
+        st.title(f"{get_time_greeting()} {system_info['computer_name']}")
+        st.write("Performance of the machine running this Streamlit app.")
     with right:
         st.markdown('<p class="status">● Monitoring live</p>', unsafe_allow_html=True)
         st.caption(snapshot["timestamp"].strftime("%H:%M:%S"))
+    st.info(
+        f"Monitoring host: **{system_info['monitoring_host']}** · "
+        "These are metrics from the computer where Streamlit is running."
+    )
 
 
 def render_dashboard(snapshot: dict[str, Any]) -> None:
@@ -288,6 +292,7 @@ def render_system_info() -> None:
         ("Memory", format_gb(info["total_ram_gb"])),
         ("Operating system", info["operating_system"]),
         ("Computer name", info["computer_name"]),
+        ("Monitoring host", info["monitoring_scope"]),
         ("Architecture", info["architecture"]),
         ("Python", info["python_version"]),
         ("Boot time", info["boot_time"].strftime("%Y-%m-%d %H:%M") if info["boot_time"] else "Unavailable"),

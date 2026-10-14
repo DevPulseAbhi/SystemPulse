@@ -1,8 +1,14 @@
 # PC Performance Analyzer
 
 A beginner-friendly MCA Semester 1 Python minor project that monitors the
-computer running the application. It uses real Windows system data through
-`psutil` and presents it in a responsive Streamlit dashboard.
+computer running the application. It uses real system data through `psutil`
+and presents it in a responsive Streamlit dashboard.
+
+The dashboard always reports the machine where the Streamlit Python process is
+running. When run locally, that is your computer. When deployed to Streamlit
+Community Cloud or another hosting service, it is the hosted server/container,
+not the viewer's computer. A browser-only Streamlit app cannot read a viewer's
+CPU, RAM, disk, processes, or network counters without a separate local agent.
 
 ## Features
 
@@ -68,6 +74,16 @@ http://localhost:8501
 
 The dashboard refreshes live approximately every two seconds. Keep the
 PowerShell window open while demonstrating the application.
+
+## Deployment behavior
+
+After deployment, the application will show a visible **Monitoring host**
+label. This prevents hosted server metrics from being mistaken for local
+computer metrics. The displayed processor, memory, disk, processes, and
+network values are exact readings available to the deployed Python process.
+
+To monitor a particular Windows computer, run the application locally on that
+computer. Do not interpret a hosted instance as a remote monitoring solution.
 
 ## Project structure
 

@@ -181,6 +181,7 @@ def get_network_metrics(previous: dict[str, Any] | None = None) -> dict[str, Any
 def get_system_info() -> dict[str, Any]:
     """Collect static operating-system and hardware information."""
     boot_time = _safe_call(psutil.boot_time)
+    computer_name = socket.gethostname()
     return {
         "processor": _get_processor_name(),
         "cpu_name": _get_processor_name(),
@@ -188,7 +189,9 @@ def get_system_info() -> dict[str, Any]:
         "logical_cores": psutil.cpu_count(logical=True),
         "total_ram_gb": _bytes_to_gb(psutil.virtual_memory().total),
         "operating_system": f"{platform.system()} {platform.release()}",
-        "computer_name": socket.gethostname(),
+        "computer_name": computer_name,
+        "monitoring_host": computer_name,
+        "monitoring_scope": "This machine (the host running Streamlit)",
         "python_version": platform.python_version(),
         "boot_time": datetime.fromtimestamp(boot_time) if boot_time else None,
         "architecture": platform.architecture()[0],
