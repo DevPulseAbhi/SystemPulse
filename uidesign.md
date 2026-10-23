@@ -1,6 +1,6 @@
 
 
-## 🎨 UI Design — PC Performance Analyzer
+## 🎨 UI Design — SystemPulse - PC Health analyzer
 
 ### Overall style
 

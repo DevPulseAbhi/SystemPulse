@@ -1,6 +1,6 @@
 
 
-## PC Performance Analyzer — Feature List
+## SystemPulse - PC Health analyzer — Feature List
 
 ### 1. 🖥️ Live System Dashboard
 The main screen should immediately show:

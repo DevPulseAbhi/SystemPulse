@@ -1,4 +1,4 @@
-"""Streamlit entry point for the PC Performance Analyzer."""
+"""Streamlit entry point for SystemPulse - PC Health analyzer."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ from monitor import collect_snapshot, get_processes, get_system_info
 
 
 st.set_page_config(
-    page_title="PC Performance Analyzer",
+    page_title="SystemPulse - PC Health analyzer",
     page_icon="◉",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -134,7 +134,7 @@ def read_snapshot() -> dict[str, Any]:
 
 def render_sidebar() -> str:
     with st.sidebar:
-        st.markdown("## ◉ PC Performance Analyzer")
+        st.markdown("## ◉ SystemPulse - PC Health analyzer")
         st.caption("Windows system monitoring dashboard")
         page = st.radio(
             "Navigation",

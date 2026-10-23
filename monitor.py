@@ -201,14 +201,17 @@ def get_system_info() -> dict[str, Any]:
 def get_processes() -> list[dict[str, Any]]:
     """Return readable process data without attempting to control processes."""
     processes: list[dict[str, Any]] = []
+    logical_cores = psutil.cpu_count(logical=True) or 1
     for process in psutil.process_iter(["name", "cpu_percent", "memory_info", "status"]):
         try:
             info = process.info
             memory = info.get("memory_info")
+            raw_cpu_percent = float(info.get("cpu_percent") or 0)
+            cpu_percent = min(max(raw_cpu_percent / logical_cores, 0), 100)
             processes.append(
                 {
                     "name": info.get("name") or "Unavailable",
-                    "cpu_percent": round(float(info.get("cpu_percent") or 0), 1),
+                    "cpu_percent": round(cpu_percent, 1),
                     "memory_mb": round(memory.rss / (1024**2), 1) if memory else None,
                     "status": info.get("status") or "Unavailable",
                 }

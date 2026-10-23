@@ -1,4 +1,4 @@
-# PC Performance Analyzer
+# SystemPulse - PC Health analyzer
 
 A beginner-friendly MCA Semester 1 Python minor project that monitors the
 computer running the application. It uses real system data through `psutil`
@@ -148,7 +148,7 @@ From PowerShell in the project folder:
 ```powershell
 git init
 git add app.py monitor.py analytics.py requirements.txt README.md features.md uidesign.md .gitignore
-git commit -m "Initial PC Performance Analyzer project"
+git commit -m "Initial SystemPulse - PC Health analyzer project"
 git branch -M main
 git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
 git push -u origin main
